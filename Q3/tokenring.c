@@ -76,7 +76,6 @@ int main (int argc, char* argv[]) {
             usleep(t*1000000);
             printf("[p%i] unlock token\n", i);
         }
-        r = random() % 101;
         token++;
         if (write(fdw, &token, sizeof(int)) == -1) {
             perror("write");
