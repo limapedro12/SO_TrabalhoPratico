@@ -63,13 +63,8 @@ int main (int argc, char* argv[]) {
         perror("write");
         return EXIT_FAILURE;
         }
-        float a = (float)random() / (float)RAND_MAX;
-        if (a <= p) {
-            printf("[p%i] lock on token (val = %i)\n", i, token);
-            sleep(t);
-            printf("[p%i] unlock token\n", i);
-        }
     }
+    srand(getpid());
     while (1) {
         if (read(fdr, &token, sizeof(int)) == -1) {
             perror("read");
@@ -78,7 +73,7 @@ int main (int argc, char* argv[]) {
         float r = (float)random() / (float)RAND_MAX;
         if (r <= p) {
             printf("[p%i] lock on token (val = %i)\n", i, token);
-            sleep(t);
+            usleep(t*1000000);
             printf("[p%i] unlock token\n", i);
         }
         r = random() % 101;
