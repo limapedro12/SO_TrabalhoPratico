@@ -54,7 +54,7 @@ int pandoc(char *filename) {
 
 int zip(char **list, int n) {
   int acc = 0;
-  char *command_array[n + 2];
+  char *command_array[n + 3];
   command_array[0] = "zip";
   command_array[1] = "ebooks.zip";
   for (int i = 0; i < n; i++) {
@@ -67,8 +67,9 @@ int zip(char **list, int n) {
       command_array[i + 2] = sp;
     }
   }
+  command_array[n+2] = ">/dev/null";
 
-  char *ptr = str_list_cat(command_array, n + 2);
+  char *ptr = str_list_cat(command_array, n + 3);
   int status = 0;
   if (acc > 0)
     status = system(ptr);
