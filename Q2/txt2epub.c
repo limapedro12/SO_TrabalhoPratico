@@ -80,6 +80,10 @@ int zip(char **list, int n) {
 }
 
 int main(int argc, char *argv[]) {
+  if(argc <= 1) {
+      printf("Not enough arguments: Insert Files to transform.");
+      return EXIT_FAILURE;
+  }
   pid_t pid = getpid();
   int forked = 0;
   // A cada processo é atribuido um numero (process_number), que o identifica
