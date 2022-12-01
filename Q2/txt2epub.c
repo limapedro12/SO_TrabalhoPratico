@@ -38,7 +38,7 @@ char *change_to_epub(char *filename) {
 
 int pandoc(char *filename) {
   char *cp = change_to_epub(filename);
-  char *command_array[5] = {"pandoc", filename, "-o", cp, ">/dev/null"};
+  char *command_array[5] = {"pandoc", filename, "-o", cp, ">/dev/null", "2>&1"};
 
   char *ptr = str_list_cat(command_array, 5);
   int status = system(ptr);
@@ -100,10 +100,7 @@ int main(int argc, char *argv[]) {
       return EXIT_FAILURE;
     }
   }
-//   if(strlen(argv[1]) == 7){
-//     printf("The first book's name can't have exatly 3 letters in the name.\n");
-//     argv[1] = "";
-//   }
+  
   pid_t pid = getpid();
   int forked = 0;
   // A cada processo é atribuido um numero (process_number), que o identifica
