@@ -42,7 +42,7 @@ int pandoc(char *filename) {
   char *ptr = str_list_cat(command_array, 4);
   int status = system(ptr);
   if (status == -1) {
-    perror("Zip Error");
+    perror("Pandoc Error");
     return -1;
   }
 
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (!file_exists(argv[process_number])) {
-    printf("%s doesn't exit\n", argv[process_number]);
+    printf("%s doesn't exist\n", argv[process_number]);
   } else {
     printf("[pid%d] coverting %s ...\n", getpid(), argv[process_number]);
     int st_pandoc = pandoc(argv[process_number]);
