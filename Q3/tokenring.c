@@ -9,7 +9,7 @@
 int main (int argc, char* argv[]) {
     unsigned int token = 0;
     if (argc < 4) {
-        printf("You must enter 3 values (number of processes, probability of locking and locking time).\n");
+        printf("usage: tokenring numberprocesses lockprobability locktime\n");
         return EXIT_FAILURE;
     }
     unsigned int n = atoi(argv[1]);
