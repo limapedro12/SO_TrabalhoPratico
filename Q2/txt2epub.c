@@ -15,7 +15,7 @@ int file_exists(const char *filename) {
 }
 
 char *str_list_cat(char **list, int n) {
-  int total_len = 0;
+  int total_len = 2;
   for (int i = 0; i < n; i++)
     total_len += strlen(list[i]);
   char *ret = (char *)malloc(total_len * sizeof(char));
@@ -29,7 +29,7 @@ char *str_list_cat(char **list, int n) {
 
 char *change_to_epub(char *filename) {
   int len = strlen(filename);
-  char *cp = (char *)malloc((len + 1) * sizeof(char));
+  char *cp = (char *)malloc((len + 2) * sizeof(char));
   strcpy(cp, filename);
   char *dot = cp + len - 3;
   strcpy(dot, "epub");
