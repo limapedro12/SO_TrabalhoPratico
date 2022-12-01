@@ -38,9 +38,9 @@ char *change_to_epub(char *filename) {
 
 int pandoc(char *filename) {
   char *cp = change_to_epub(filename);
-  char *command_array[4] = {"pandoc", filename, "-o", cp};
+  char *command_array[5] = {"pandoc", filename, "-o", cp, ">/dev/null"};
 
-  char *ptr = str_list_cat(command_array, 4);
+  char *ptr = str_list_cat(command_array, 5);
   int status = system(ptr);
   if (status == -1) {
     perror("Pandoc Error");
