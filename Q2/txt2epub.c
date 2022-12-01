@@ -77,7 +77,6 @@ int zip(char **list, int n) {
     return -1;
   }
   
-  for(int i = 0; i < n + 2; i++) free(command_array[i]);
   free(ptr);
   return 0;
 }
