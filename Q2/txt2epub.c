@@ -81,10 +81,23 @@ int zip(char **list, int n) {
   return 0;
 }
 
+int ends_with_txt(const char *str){
+    size_t lenstr = strlen(str);
+    if (lenstr < 4)
+        return 0;
+    return strncmp(str + lenstr - 4, ".txt", 4) == 0;
+}
+
 int main(int argc, char *argv[]) {
   if(argc <= 1) {
-      printf("Not enough arguments: Insert Files to transform.");
+      printf("Not enough arguments: Insert Files to transform\n");
       return EXIT_FAILURE;
+  }
+  for(int i = 1; i < argc; i++){
+    if(!ends_with_txt(argv[i])){
+      printf("%s isn't a txt file\n", argv[i]);
+      return EXIT_FAILURE;
+    }
   }
   pid_t pid = getpid();
   int forked = 0;
