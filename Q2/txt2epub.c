@@ -28,9 +28,10 @@ char *str_list_cat(char **list, int n) {
 }
 
 char *change_to_epub(char *filename) {
-  char *cp = (char *)malloc((strlen(filename) + 1) * sizeof(char));
+  int len = strlen(filename);
+  char *cp = (char *)malloc((len + 1) * sizeof(char));
   strcpy(cp, filename);
-  char *dot = cp + strlen(cp) - 3;
+  char *dot = cp + len - 3;
   strcpy(dot, "epub");
   return cp;
 }
@@ -45,7 +46,8 @@ int pandoc(char *filename) {
     perror("Pandoc Error");
     return -1;
   }
-
+  
+  free(cp);
   free(ptr);
   return 0;
 }
@@ -74,7 +76,8 @@ int zip(char **list, int n) {
     perror("Zip Error");
     return -1;
   }
-
+  
+  for(int i = 0; i < n + 2; i++) free(command_array[i]);
   free(ptr);
   return 0;
 }
